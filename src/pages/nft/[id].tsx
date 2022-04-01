@@ -26,16 +26,16 @@ export default function NFTDropPage() {
               highlight={false}
             >
               <div 
-                className='bg-gradient-to-br from-[#D834FF] to-[#0A84FF] p-2 rounded-xl' 
-                data-atropos-offset="-5"
+                className='bg-gradient-to-br from-[#D834FF] to-[#0A84FF] p-2 rounded-xl'
               >
                 <div className='w-44 h-44 lg:w-72 lg:h-96 relative'>
+                  <div className='w-full h-full relative bg-[#e4e4a8]' data-atropos-offset="-5" />
                   <Image 
-                    src="https://links.papareact.com/8sg" 
+                    src="/images/Monke.png" 
                     alt="PAPAFAM Apes" 
                     priority
                     layout='fill'
-                    className='object-cover rounded-xl'
+                    className='object-cover rounded-xl relative'
                     data-atropos-offset="5"
                   />
                 </div>
