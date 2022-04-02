@@ -1,9 +1,17 @@
 import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react';
 import Atropos from 'atropos/react';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+import { sanityClient, urlFor } from '../../../sanity';
+import { Collection } from '../../../typings';
 
-export default function NFTDropPage() {
+interface NFTProps {
+  collection: Collection;
+}
+
+export default function NFTDropPage({ collection }: NFTProps) {
   const connectWithMetamask = useMetamask();
   const address = useAddress();
   const disconnect = useDisconnect();
@@ -11,7 +19,7 @@ export default function NFTDropPage() {
   return (
     <>
       <Head>
-        <title>NFT Drop</title>
+        <title>{collection.nftCollectionName}</title>
         <link rel="icon" href="/favicon.png" type='image/png' />
       </Head>
       
@@ -31,7 +39,7 @@ export default function NFTDropPage() {
                 <div className='w-44 h-44 lg:w-72 lg:h-96 relative'>
                   <div className='w-full h-full relative bg-[#e4e4a8]' data-atropos-offset="-5" />
                   <Image 
-                    src="/images/Monke.png" 
+                    src={urlFor(collection.mainImage.asset._ref).url()}
                     alt="PAPAFAM Apes" 
                     priority
                     layout='fill'
@@ -44,11 +52,11 @@ export default function NFTDropPage() {
 
             <div className='text-center p-5 space-y-2'>
               <h1 className='text-4xl font-bold text-white'>
-                PAPAFAM Apes
+                {collection.nftCollectionName}
               </h1>
               
               <h2 className='text-xl text-gray-300'>
-                A collection of PAPAFAM apes who live & breath React
+                {collection.description}
               </h2>
             </div>
           </div>
@@ -56,11 +64,13 @@ export default function NFTDropPage() {
         
         <div className='flex flex-1 flex-col px-12 py-8 lg:col-span-6 bg-[#07071C]'>
           <header className='flex items-center justify-between text-white'>
-            <h1 className='w-52 cursor-pointer text-xl font-extralight sm:w-80'>
-              The <span className='font-extrabold underline decoration-[#FF496A]'>
-                PAPAFAM
-              </span> NFT Market Place
-            </h1>
+            <Link href={'/'} passHref>
+              <h1 className='w-52 cursor-pointer text-xl font-extralight sm:w-80'>
+                The <span className='font-extrabold underline decoration-[#FF496A]'>
+                  PAPAFAM
+                </span> NFT Market Place
+              </h1>
+            </Link>
 
             <button 
               className={`rounded-full bg-[#4EE39D] text-[#07071C] font-medium
@@ -83,7 +93,7 @@ export default function NFTDropPage() {
             lg:justify-center'>
             <div className='w-80 h-80 relative pb-10 lg:h-40'>
               <Image
-                src='https://links.papareact.com/bdy'
+                src={urlFor(collection.previewImage.asset._ref).url()}
                 layout='fill'
                 alt=''
                 priority 
@@ -92,7 +102,7 @@ export default function NFTDropPage() {
             </div>
 
             <h1 className='text-xl font-bold lg:text-5xl lg:font-extrabold text-[#EBEBF5]'>
-              The PAPAFAM Ape Coding Club | NFT Drop
+              {collection.title}
             </h1>
 
             <p className='pt-2 text-xl text-[#4EE39D]'>
@@ -112,5 +122,46 @@ export default function NFTDropPage() {
         </div>
       </div>
     </>
-  )
+  );
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const querry = `*[_type == "collection" && slug.current == $id][0]{
+    _id,
+    title,
+    slug {
+    current,
+   },
+    address,
+    description,
+    nftCollectionName,
+    mainImage {
+    asset
+   },
+    previewImage {
+    asset  
+    },
+    creator -> {
+    _id,  
+    name,
+    address,
+    slug {
+    current  
+    },  
+  },
+  }`;
+
+  const collection = await sanityClient.fetch(querry, { id: params?.id });
+
+  if(Object.keys(collection).length === 0 || !collection) {
+    return {
+      notFound: true
+    }
+  }
+
+  return {
+    props: {
+      collection,
+    }
+  }
 }
