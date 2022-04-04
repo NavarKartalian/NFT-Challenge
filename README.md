@@ -1,23 +1,34 @@
-# Next.js + Tailwind CSS Example
+<h1 align="center">NFT Challenge</h1>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+![Design preview Home](./design/Home.png)
+---
+![Design preview NFT](./design/Papafam.png)
 
-## Deploy your own
+## Be Welcome!
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+Thanks for checking out this project!
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+This project is part of [Sonny Sangha](https://www.youtube.com/channel/UCqeTj_QAnNlmt7FwzNwHZnA) Challenge tutorials.
 
-## How to use
+**Don't forget to set your own environment variables.**
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## Links
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app -- --example with-tailwindcss with-tailwindcss-app
-```
+- Sonny Sangha NFT Challenge: [NFT](https://www.youtube.com/watch?v=B1pnHVdnN64)
+- Live site: [NFT Drop](https://nft-challenge-papafam.vercel.app/)
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Built with
+
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind css](https://tailwindcss.com/) - CSS framework
+- [Sanity](https://www.sanity.io/) - CMS
+- [Thirdweb](https://docs.thirdweb.com/react) - Thirdweb react SDK
+- [Atropos](https://atroposjs.com/) - 3D parallax hover effects
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [React Hot Toast](https://react-hot-toast.com/) - Toasts
+
+## Useful resources
+
+- [Atropos](https://atroposjs.com/docs/react) - Atropos docs
+- [Metamask](https://metamask.io/) - Web3 wallet
